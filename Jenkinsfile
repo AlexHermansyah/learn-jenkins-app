@@ -56,14 +56,14 @@ pipeline {
                         docker {
                             image 'mcr.microsoft.com/playwright:v1.45.1-jammy'
                             reuseNode true
-                            args '-u root:root'
                         }
                     }
 
                     steps {
                         sh '''
-                            npm install -g serve
-                            serve -s build
+                            npm install serve
+                            node_modules/.bin/serve -s build &
+                            sleep 10
                             npx playwright test
                         '''
                     }
@@ -135,4 +135,4 @@ pipeline {
     //             }
     //         }
     //     }
-    
+     
