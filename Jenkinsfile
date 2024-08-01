@@ -7,26 +7,26 @@ pipeline {
     //     REACT_APP_VERSION = "1.0.$BUILD_ID"
     // }
 
-    stages {
+    // stages {
 
-        stage('Build') {
-            agent {
-                docker {
-                    image 'node:18-alpine'
-                    reuseNode true
-                }
-            }
-            steps {
-                sh '''
-                    ls -la
-                    node --version
-                    npm --version
-                    npm ci
-                    npm run build
-                    ls -la
-                '''
-            }
-        }
+    //     stage('Build') {
+    //         agent {
+    //             docker {
+    //                 image 'node:18-alpine'
+    //                 reuseNode true
+    //             }
+    //         }
+    //         steps {
+    //             sh '''
+    //                 ls -la
+    //                 node --version
+    //                 npm --version
+    //                 npm ci
+    //                 npm run build
+    //                 ls -la
+    //             '''
+    //         }
+    //     }
 
         stage('Tests') {
             // parallel {
@@ -61,9 +61,8 @@ pipeline {
 
                     steps {
                         sh '''
-                            npm install serve
-                            /workspaces/learn-jenkins-app/node_modules/serve-index -s build &
-                            sleep 10
+                            npm install -g serve
+                            serve -s build
                             npx playwright test
                         '''
                     }
@@ -74,7 +73,7 @@ pipeline {
                             junit 'jest-result/junit.xml'
                         }
                     }
-                }
+                // }
 
     //     stage('Deploy staging') {
     //         agent {
