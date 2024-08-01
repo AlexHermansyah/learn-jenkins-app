@@ -51,30 +51,30 @@ pipeline {
                     }
                 }
 
-    //             stage('E2E') {
-    //                 agent {
-    //                     docker {
-    //                         image 'my-playwright'
-    //                         reuseNode true
-    //                     }
-    //                 }
+                stage('E2E') {
+                    agent {
+                        docker {
+                            image 'mcr.microsoft.com/playwright:v1.39.0-jammy'
+                            reuseNode true
+                        }
+                    }
 
-    //                 steps {
-    //                     sh '''
-    //                         serve -s build &
-    //                         sleep 10
-    //                         npx playwright test  --reporter=html
-    //                     '''
-    //                 }
-
-    //                 post {
-    //                     always {
-    //                         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Local E2E', reportTitles: '', useWrapperFileDirectly: true])
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
+                    steps {
+                        sh '''
+                            npm install serve
+                            node_module/.bin/serve -s build &
+                            sleep 10
+                            npx playwright test
+                        '''
+                    }
+                }
+            }
+                    post {
+                        always {
+                            junit 'jest-result/junit.xml'
+                        }
+                    }
+                }
 
     //     stage('Deploy staging') {
     //         agent {
