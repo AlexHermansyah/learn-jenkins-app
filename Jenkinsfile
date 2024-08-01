@@ -30,7 +30,7 @@ pipeline {
 
         stage('Test') {
             // parallel {
-                stage('Unit test') {
+            //     stage('Unit test') {
                     agent {
                         docker {
                             image 'node:18-alpine'
@@ -62,7 +62,8 @@ pipeline {
                     steps {
                         sh '''
                             npm install serve
-                            node_modules/.bin/serve -s build
+                            node_modules/.bin/serve -s build &
+                            sleep 10
                             npx playwright test
                         '''
                     }
@@ -133,4 +134,5 @@ pipeline {
     //                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Prod E2E', reportTitles: '', useWrapperFileDirectly: true])
     //             }
     //         }
-        }
+    //     }
+     
