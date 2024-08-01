@@ -46,7 +46,7 @@ pipeline {
                     }
                     post {
                         always {
-                            junit 'jest-results/junit.xml'
+                            junit 'test-results/junit.xml'
                         }
                     }
                 }
@@ -71,7 +71,7 @@ pipeline {
             }
                     post {
                         always {
-                            junit 'jest-result/junit.xml'
+                            junit 'test-results/junit.xml'
                         }
                     }
                 }
