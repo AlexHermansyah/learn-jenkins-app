@@ -7,7 +7,7 @@ pipeline {
     //     REACT_APP_VERSION = "1.0.$BUILD_ID"
     // }
 
-    // stages {
+    stages {
 
     //     stage('Build') {
     //         agent {
@@ -28,9 +28,9 @@ pipeline {
     //         }
     //     }
 
-        stage('Tests') {
+        stage('Test') {
             // parallel {
-            //     stage('Unit tests') {
+            //     stage('Unit test') {
                     agent {
                         docker {
                             image 'node:18-alpine'
@@ -62,7 +62,7 @@ pipeline {
                     steps {
                         sh '''
                             npm install -g serve
-                            serve -s build
+                            node_modules/.bin/serve -s build
                             npx playwright test
                         '''
                     }
@@ -73,7 +73,7 @@ pipeline {
                             junit 'jest-result/junit.xml'
                         }
                     }
-                // }
+                }
 
     //     stage('Deploy staging') {
     //         agent {
