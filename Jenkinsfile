@@ -67,10 +67,10 @@ pipeline {
                                             npx playwright test --reporter=html
                                         '''
                                     }
-                                }
-                            }
-                        }
-                    }
+                        //         }
+                        //     }
+                        // }
+                    // }
                     post {
                         always {
                             junit 'jest-results/junit.xml'
@@ -78,7 +78,9 @@ pipeline {
                         }
                     }
                 }
-        stage('Deploy prod') {
+            }
+        }
+        stage('Deploy') {
             agent {
                 docker {
                     image 'node:18-alpine'
@@ -105,5 +107,5 @@ pipeline {
             //     always {
             //         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Prod E2E', reportTitles: '', useWrapperFileDirectly: true])
                 }
-        //     }
-        // }
+            }
+        }
