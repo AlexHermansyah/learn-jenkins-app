@@ -6,8 +6,7 @@ pipeline {
         // REACT_APP_VERSION = "1.0.$BUILD_ID"
     }
 
-    // stages {
-
+    stages {
         stage('Build') {
             agent {
                 docker {
@@ -110,4 +109,4 @@ pipeline {
             //         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Prod E2E', reportTitles: '', useWrapperFileDirectly: true])
                 }
             }
-        // }
+        }
