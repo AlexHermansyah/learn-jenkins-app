@@ -39,8 +39,8 @@ pipeline {
 
                                     steps {
                                         sh '''
-                                            #test -f build/index.html
-                                            npm test
+                                            #tests -f build/index.html
+                                            npm tests
                                         '''
                                     }
                                     post {
