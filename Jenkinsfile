@@ -37,7 +37,7 @@ pipeline {
                 }
             }
             environment {
-                AWS_S3_BUCKET = 'learn-jenkins-20240810'
+                AWS_S3_BUCKET = 'learn-jenkins-202408102001'
             }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'my-aws', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]) {
